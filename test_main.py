@@ -32,7 +32,7 @@ class TestInputOutput(unittest.TestCase):
     def check_result(self, result: str, answer: str):
         """Test the user's answer against the expected answer."""
         if answer != "":
-            self.assertNotEqual(result.strip(), "", msg=f"No output from program.")
+            self.assertNotEqual(result.strip(), "", msg="No output from program.")
         self.assertIn(result,
           answer,
           msg=f"User output {result!r} != expected output {answer!r}")
@@ -41,25 +41,25 @@ class TestInputOutput(unittest.TestCase):
         testcase = "2.345\n"
         testans = "The number 2.345 has 3 decimal places.\n"
         userans = invoke_main(testcase)
-        self.test_result(userans, testans)        
+        self.check_result(userans, testans)        
 
     def test_part2(self):
         testcase = "02.345\n"
         testans = "The number 02.345 has 3 decimal places.\n"
         userans = invoke_main(testcase)
-        self.test_result(userans, testans)        
+        self.check_result(userans, testans)        
 
     def test_part3(self):
         testcase = "0.0023\n"
         testans = "The number 0.0023 has 4 decimal places.\n"
         userans = invoke_main(testcase)
-        self.test_result(userans, testans)        
+        self.check_result(userans, testans)        
 
     def test_part4(self):
         testcase = "2.3400\n"
         testans = "The number 2.345 has 4 decimal places.\n"
         userans = invoke_main(testcase)
-        self.test_result(userans, testans)        
+        self.check_result(userans, testans)        
 
 
 if __name__ == '__main__':
