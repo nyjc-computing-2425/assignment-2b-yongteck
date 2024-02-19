@@ -1,21 +1,27 @@
+import contextlib
+import subprocess
 import sys
 import unittest
 
-# autograding submodule might not be successfully pulled on init
-# if unsuccessful, we have to pull it manually
 # limit number of retries
 MAX_RETRIES = 5
 retries = 0
-while "autograding" not in sys.modules:
-    try:
-        import autograding
-        from autograding.case import FuncCall, InOut
-    except ImportError:
-        import subprocess
-        subprocess.run(["git", "submodule", "update", "--init"])
-        retries += 1
-    if retries >= MAX_RETRIES:
-        sys.exit("[import autograding] Too many retries, exiting")
+
+# Force reload of autograding submodule
+# This allows it to be updated even after students have accepted an assignment
+# It would otherwise require them to delete and re-accept the assignment
+# (or alternatively update the submodule manually)
+def unload():
+    global autograding
+    if "autograding" in sys.modules:
+        del sys.modules["autograding"]
+    with contextlib.suppress(NameError):
+        del autograding
+
+unload()
+subprocess.run(["git", "submodule", "update", "--init", "--remote"])
+import autograding
+from autograding.case import FuncCall, InOut
 
 
 class TestSF(autograding.TestInputOutput):
