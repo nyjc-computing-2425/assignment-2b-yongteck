@@ -27,7 +27,7 @@ from autograding.case import FuncCall, InOut
 class TestSF(autograding.TestInputOutput):
     def setUp(self):
         self.testcases = [
-            InOut(input="2.345", output="The number 2.345 has 3 decimal placess."),
+            InOut(input="2.345", output="The number 2.345 has 3 decimal places."),
             InOut(input="02.345", output="The number 02.345 has 3 decimal places."),
             InOut(input="0.0023", output="The number 0.0023 has 4 decimal places."),
             InOut(input="2.3400", output="The number 2.3400 has 4 decimal places."),
