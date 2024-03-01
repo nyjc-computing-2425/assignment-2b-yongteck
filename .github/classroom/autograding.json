@@ -1,0 +1,14 @@
+{
+  "tests": [
+    {
+      "name": "Unit tests",
+      "setup": "",
+      "run": "python test_main.py",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 2,
+      "points": null
+    }
+  ]
+}
